@@ -15,8 +15,27 @@
  const mongoose = require("mongoose")
  mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+/**2)Create a person schema called personSchema having this prototype:
+//
+//- Person Prototype -
+//--------------------
+//name : string [required]
+//age :  number
+//favoriteFoods : array of strings
+//Use the Mongoose basic schema types. If you want you can also add more fields, use simple validators like 
+//'required' or 'unique', and set 'default' values. See the [Mongoose docs](http://mongoosejs.com/docs/guide.html).
+* 
+*/
 
-let Person;
+let peopleSchema = new mongoose.Schema({
+  name: {type: String, required: true},
+  age: Number,
+  favoriteFoods: [String]
+
+})
+
+let Person = mongoose.model('Person', peopleSchema)
+//let sammy = new Person({name: 'Sam', age: 36, favoriteFoods: ['croquetas', 'paella', 'tortilla de patatas']})
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
