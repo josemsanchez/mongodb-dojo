@@ -47,8 +47,22 @@ sammy.save( (error, data) => {
 //done(null /*, data*/);
 };
 
-const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+let arrayOfPeople = [
+  {
+    name: "Diego",  age: 2,  favoriteFoods: ["avocado", "pizza", "cookies"]},
+  { name: "Jose Manuel", age: 66, favoriteFoods: ["paella", "fish"] },
+  { name: "Pili", age: 63, favoriteFoods: ["paella", "octopus"] }
+];
+
+var createManyPeople = function(arrayOfPeople, done) {
+  
+  Person.create(arrayOfPeople, (error, createdPeople) => {
+    if(error){
+      console.log(error)
+    }else{
+      done(null, createdPeople)
+    }
+  });
 };
 
 const findPeopleByName = (personName, done) => {
