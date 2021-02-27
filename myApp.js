@@ -50,8 +50,8 @@ sammy.save( (error, data) => {
 let arrayOfPeople = [
   {
     name: "Diego",  age: 2,  favoriteFoods: ["avocado", "pizza", "cookies"]},
-  { name: "Jose Manuel", age: 66, favoriteFoods: ["paella", "fish"] },
-  { name: "Pili", age: 63, favoriteFoods: ["paella", "octopus"] }
+  { name: "Jose Manuel", age: 66, favoriteFoods: ["paella", "Spanish garlis shrimp"] },
+  { name: "Pili", age: 63, favoriteFoods: ["paella", "strawberries"] }
 ];
 
 var createManyPeople = function(arrayOfPeople, done) {
@@ -66,7 +66,13 @@ var createManyPeople = function(arrayOfPeople, done) {
 };
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({name: personName}, (error, arrayOfResults) => {
+    if(error){
+      console.log(error)
+    }else{
+      done(null, arrayOfResults)
+    }
+  })
 };
 
 const findOneByFood = (food, done) => {
